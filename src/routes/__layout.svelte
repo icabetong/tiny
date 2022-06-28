@@ -15,4 +15,21 @@
 
 </script>
 
+<svelte:head>
+  <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  
+  <meta name="keywords" content="GoTiny, URL Shortener, Tiny, URL"/>
+  <meta name="author" content="Isaiah Collins Abetong"/>
+  <meta name="robots" content="all"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1" />
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+
+  <meta property="og:locale" content="en_US"/>
+  <meta property='og:title' content="Tiny - the URL Shortener"/>
+	<meta property='og:url' content="http://www.github.com/icabetong/tiny"/>
+	<meta property='og:site_name' content="Tiny"/>
+	<meta property='og:type' content='website'/>
+</svelte:head>
+
 <slot/>

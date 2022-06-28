@@ -1,6 +1,20 @@
 {
   "app-name": "Tiny",
+  "desc": "Shorten links easily using the GoTiny API.",
+  "field": {
+    "url": "Enter URL to shrink:"
+  },
+  "feedback": {
+    "input-not-url": "Inputted data not a URL",
+    "base-url-required": "The URL to shrink is required",
+    "copied-to-clipboard": "Shrunken URL copied to clipboard"
+  },
   "button": {
     "shrink": "Shrink"
+  },
+  "footer": {
+    "api": "About GoTiny API",
+    "repo": "View GitHub",
+    "disclaimer": "Tiny is an unofficial front-end wrapper to the GoTiny API and is not affiliated in any way of the GoTiny or its developers"
   }
 }
