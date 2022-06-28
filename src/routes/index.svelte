@@ -24,7 +24,7 @@
 
 <main class="min-h-screen bg-gradient-to-r from-sky-50 to-teal-50 dark:from-sky-900 dark:to-teal-900 dark:text-white">
   <Navigation/>
-  <div class="py-60 max-w-screen-lg">
+  <div class="py-36 max-w-screen-lg">
     
     <div class="h-full flex flex-col items-center justify-center">
       <form 
@@ -37,10 +37,10 @@
             type="text" 
             bind:value={$data.value}
             class="block w-full p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 sm:text-xs focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+            {#if $current.hasError('data.required')}
+              <span class="text-sm">Data is required</span>
+            {/if}
         </div>
-        {#if $current.hasError('data.required')}
-          <div>Data is required</div>
-        {/if}
       <button 
         type="submit"
         class="bg-teal-500 px-2 py-2 rounded text-white font-semibold">
