@@ -1,7 +1,10 @@
 <script lang="ts">
+  import { t } from '$lib/translations'
   import { form as useForm, field } from 'svelte-forms'
   import { required, url } from 'svelte-forms/validators'
-  import Navigation from '../components/Navigation.svelte'
+  import { ClipboardCopyIcon } from 'svelte-heroicons-component'
+  import Header from '../components/Header.svelte'
+  import Footer from '../components/Footer.svelte'
 
   const data = field('data', '', [required(), url()])
   const current = useForm(data)
@@ -22,31 +25,43 @@
   }
 </script>
 
-<main class="min-h-screen bg-gradient-to-r from-sky-50 to-teal-50 dark:from-sky-900 dark:to-teal-900 dark:text-white">
-  <Navigation/>
-  <div class="py-36 max-w-screen-lg">
-    
-    <div class="h-full flex flex-col items-center justify-center">
-      <form 
-        on:submit|preventDefault={onRequest}
-        class="px-4 py-8 rounded border shadow flex flex-col space-y-4 items-center justify-center bg-white dark:bg-gray-600 dark:border-gray-600">
-        <div>
-          <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">URL</label>
-          <input 
-            id="url"
-            type="text" 
-            bind:value={$data.value}
-            class="block w-full p-2 text-gray-900 border border-gray-300 rounded bg-gray-50 sm:text-xs focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
-            {#if $current.hasError('data.required')}
-              <span class="text-sm">Data is required</span>
-            {/if}
-        </div>
-      <button 
-        type="submit"
-        class="bg-teal-500 px-2 py-2 rounded text-white font-semibold">
-        Get Response
-      </button>
+<main class="min-h-screen bg-slate-800 text-white">
+  <div class="py-32 max-w-screen-sm mx-auto h-full flex flex-col items-center justify-center">
+    <Header/>
+    <form 
+      on:submit|preventDefault={onRequest}
+      class="w-full px-4 py-8 flex flex-col items-center justify-center">
+      <div class="w-full flex flex-row">
+        <input 
+          id="url"
+          type="text"
+          placeholder="https://www.google.com.ph"
+          bind:value={$data.value}
+          class="peer block flex-1 p-2 border rounded-l-md text-md bg-slate-700 border-slate-600 placeholder-gray-400 focus:ring-teal-500 focus:border-teal-500"/>
+          <button 
+            type="submit"
+            class="bg-teal-500 px-4 py-2 rounded-r-md text-white font-semibold peer-focus:ring-teal-500 peer-focus:border-teal-500">
+            {$t('common.button.shrink')}
+          </button>
+      </div>
+      {#if $current.hasError('data.required')}
+        <span class="text-sm">Data is required</span>
+      {/if}
     </form>
-    </div>
+    {#if response.code}
+      <div class="w-full px-4 py-4">
+        <div class="bg-slate-900 w-full flex flex-row items-center justify-center p-4 rounded-lg">
+          <input 
+            readonly
+            type="text" 
+            value={response.code}
+            class="appearance-none bg-slate-900 flex-1 text-center outline-none"/>
+          <button>
+            <ClipboardCopyIcon/>
+          </button>
+        </div>
+      </div>
+    {/if}
   </div>
 </main>
+<Footer/>
