@@ -7,10 +7,12 @@
   "feedback": {
     "input-not-url": "Inputted data not a URL",
     "base-url-required": "The URL to shrink is required",
-    "copied-to-clipboard": "Shrunken URL copied to clipboard"
+    "copied-to-clipboard": "Shrunken URL copied to clipboard",
+    "error-generic": "An error occurred"
   },
   "button": {
-    "shrink": "Shrink"
+    "shrink": "Shrink",
+    "copy": "Copy"
   },
   "footer": {
     "api": "About GoTiny API",

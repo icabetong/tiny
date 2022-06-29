@@ -1528,11 +1528,6 @@ svelte-forms@^2.3.1:
   dependencies:
     is-promise "^4.0.0"
 
-svelte-heroicons-component@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/svelte-heroicons-component/-/svelte-heroicons-component-1.1.2.tgz#437b9fa5afb4a85b4f82bf280f30bc17496fcf99"
-  integrity sha512-zRCvC+hSmsEPgyePMj6ZKkPsD5IGdb0lSdtEqaXyxxGr59DstcB3TuDkOhzjUAO2DAAkq68ytMABKIX+/a0rdw==
-
 svelte-hmr@^0.14.12:
   version "0.14.12"
   resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.14.12.tgz#a127aec02f1896500b10148b2d4d21ddde39973f"

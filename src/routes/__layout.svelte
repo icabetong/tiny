@@ -15,10 +15,7 @@
 
 </script>
 
-<svelte:head>
-  <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  
+<svelte:head>  
   <meta name="keywords" content="GoTiny, URL Shortener, Tiny, URL"/>
   <meta name="author" content="Isaiah Collins Abetong"/>
   <meta name="robots" content="all"/>

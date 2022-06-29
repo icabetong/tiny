@@ -2,14 +2,16 @@
   import { t } from '$lib/translations'
   import { form as useForm, field } from 'svelte-forms'
   import { required, url } from 'svelte-forms/validators'
-  import { ClipboardCopyIcon } from 'svelte-heroicons-component'
   import Header from '../components/Header.svelte'
   import Footer from '../components/Footer.svelte'
+  import Spinner from '../components/Spinner.svelte'
 
   const data = field('data', '', [required(), url()])
   const current = useForm(data)
   
+  let isWorking = false
   let response: GoTinyResponse = {}
+  let error: any | null = null
 
   async function onCopy() {
     if (response.code) {
@@ -18,16 +20,25 @@
   }
 
   async function onRequest() {
+    isWorking = true
     const hyperlink = $data.value
-    
-    // const response = await fetch('https://gotiny.cc/api', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ input: hyperlink })
-    // })
-    setTimeout(() => {
-      response = { code: hyperlink }
-    }, 3000)
+
+    try {
+      const res = await fetch('https://gotiny.cc/api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input: hyperlink })
+      })
+      const data = await res.json()
+      if (data.length > 0) {
+        const current = data[0] as GoTinyResponse
+        response = current
+      }
+    } catch (err) {
+      error = err
+    } finally {
+      isWorking = false
+    }
   }
 </script>
 
@@ -49,16 +60,23 @@
           required
           id="url"
           type="text"
-          placeholder="https://www.google.com.ph"
+          placeholder="https://www.example.com"
+          disabled={isWorking}
           class="block flex-1 p-2 border rounded-l-md text-md bg-slate-700 border-slate-600 placeholder-gray-400 focus:border-teal-500 focus:outline-none focus:bg-slate-700 active:bg-slate-700"
-          aria-required="true"/>
+          aria-required="true"
+          aria-disabled={isWorking}/>
         <button 
-          disabled={!$current.valid }
+          disabled={!$current.valid || isWorking}
           type="submit"
-          class="bg-teal-500 px-4 py-2 rounded-r-md text-white font-semibold focus:outline focus:outline-cyan-300 disabled:cursor-normal disabled:opacity-50">
+          class="bg-teal-500 px-4 py-2 rounded-r-md text-white font-semibold hover:bg-teal-600 focus:outline focus:outline-teal-300 disabled:cursor-normal disabled:opacity-50">
           {$t('common.button.shrink')}
         </button>
       </div>
+      {#if isWorking}
+        <div class="mt-4">
+          <Spinner/>
+        </div>
+      {/if}
       {#if $current.hasError('data.url')}
         <span class="w-full text-sm px-1 py-2 text-red-500">{$t('common.feedback.input-not-url')}</span>
       {/if}
@@ -69,14 +87,21 @@
           <input 
             readonly
             type="text" 
-            value={response.code}
+            value={`https://www.gotiny.cc/${response.code}`}
             class="appearance-none bg-slate-900 flex-1 text-center outline-none"/>
           <button
             on:click={onCopy}
             type="button"
-            class="p-2 rounded-full hover:bg-slate-700 focus:border-cyan-500 focus:outline focus:outline-cyan-500">
-            <ClipboardCopyIcon/>
+            class="px-3 py-1 text-sm font-medium rounded-lg bg-slate-700 hover:bg-slate-600 focus:border-teal-500 focus:outline focus:outline-teal-500">
+            {$t("common.button.copy")}
           </button>
+        </div>
+      </div>
+    {/if}
+    {#if error}
+      <div class="w-full px-4 py-4">
+        <div class="bg-red-500 w-full p-2 flex flex-row space-x-2 items-center justify-center rounded-lg">
+          <p class="text-lg font-medium">{$t('common.feedback.error-generic')}</p>
         </div>
       </div>
     {/if}

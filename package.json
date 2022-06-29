@@ -1,7 +1,7 @@
 {
 	"name": "tiny",
 	"version": "0.0.1",
-  "license": "GPL3",
+	"private": true,
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -26,7 +26,6 @@
 	"type": "module",
 	"dependencies": {
 		"svelte-forms": "^2.3.1",
-		"svelte-heroicons-component": "^1.1.2",
 		"sveltekit-i18n": "^2.2.2"
 	}
 }
