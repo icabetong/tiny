@@ -16,6 +16,7 @@
 </script>
 
 <svelte:head>  
+  <meta name="theme-color" content="#14b8a6"/>
   <meta name="keywords" content="GoTiny, URL Shortener, Tiny, URL"/>
   <meta name="author" content="Isaiah Collins Abetong"/>
   <meta name="robots" content="all"/>
