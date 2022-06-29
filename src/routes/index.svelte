@@ -68,7 +68,7 @@
         <button 
           disabled={!$current.valid || isWorking}
           type="submit"
-          class="bg-teal-500 px-4 py-2 rounded-r-md text-white font-semibold hover:bg-teal-600 focus:outline focus:outline-teal-300 disabled:cursor-normal disabled:opacity-50">
+          class="bg-teal-500 px-4 py-2 rounded-r-md text-black font-semibold hover:bg-teal-600 focus:outline focus:outline-teal-300 disabled:cursor-normal disabled:opacity-50">
           {$t('common.button.shrink')}
         </button>
       </div>
